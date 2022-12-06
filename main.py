@@ -1,11 +1,12 @@
 import json
-
 import pymongo
 from pymongo import MongoClient
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
 from datetime import datetime
 
 app = Flask(__name__)
+cors = CORS(app)
 user_db = "Dev"
 pass_db = "teste123"
 db_name = "StockSale"
@@ -19,6 +20,7 @@ def connect():
 
 
 @app.route('/Product/List', methods=['GET'])
+@cross_origin()
 def consultProduct():
     db_table = connect()['Stock']
     product_id = request.args.get('Product_ID')
