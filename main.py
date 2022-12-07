@@ -18,6 +18,27 @@ def connect():
     return client[db_name]
 
 
+@app.route('/Product/Insert', methods=['POST'])
+@cross_origin()
+def insertproduct():
+    db_table = connect()['Stock']
+
+    product_id = db_table.find_one(sort=[("product_ID", pymongo.DESCENDING)])["product_ID"] + 1
+    dict_in = {"product_ID": product_id, "updated_date": datetime.now().strftime("%d/%m/%y - %H:%M")}
+
+    for key, value in request.args.items():
+        if value:
+            if value.replace('.', '').isnumeric():
+                dict_in.update({key: float(value)})
+            else:
+                dict_in.update({key: value})
+        else:
+            return f"O campo {key} deve ser preenchido."
+
+    db_table.insert_one(dict_in)
+    return f"Produto ID: {product_id} inserido com sucesso"
+
+
 @app.route('/Product/List', methods=['GET'])
 @cross_origin()
 def consultproduct():
@@ -38,6 +59,26 @@ def consultproduct():
         'ID do produto nao informado.'
 
 
+@app.route('/Product/Update', methods=['PUT'])
+def update_info_book():
+    db_table = connect()['Stock']
+    product_id = request.args.get('Product_ID')
+    dict_up = {}
+
+    if product_id:
+        for key, value in request.args.items():
+            if value and not key == 'Product_ID':
+                if value.replace('.', '').isnumeric():
+                    dict_up.update({key: float(value)})
+                else:
+                    dict_up.update({key: value})
+
+        db_table.update_one({"product_ID": int(product_id)}, {"$set": dict_up})
+        return "Update realizado"
+    else:
+        return "Preencha o parametro product_ID"
+
+
 @app.route('/Product', methods=['DELETE'])
 @cross_origin()
 def delproduct():
@@ -49,27 +90,6 @@ def delproduct():
         return f'Produto ID: {product_id} excluido com sucesso.'
     else:
         'Para excluir um produto informe o ID.'
-
-
-@app.route('/Product/Insert', methods=['POST'])
-@cross_origin()
-def insertproduct():
-    db_table = connect()['Stock']
-
-    product_id = db_table.find_one(sort=[("product_ID", pymongo.DESCENDING)])["product_ID"] + 1
-    dict_in = {"product_ID": product_id, "updated_date": datetime.now().strftime("%d/%m/%y - %H:%M")}
-
-    for key, value in request.args.items():
-        if value:
-            if value.replace('.', '').isnumeric():
-                dict_in.update({key: float(value)})
-            else:
-                dict_in.update({key: value})
-        else:
-            return f"O campo {key} deve ser preenchido."
-
-    db_table.insert_one(dict_in)
-    return f"Produto ID: {product_id} inserido com sucesso"
 
 
 app.run(port=5000, host='localhost', debug=True)
