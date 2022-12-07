@@ -12,7 +12,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/Product/List?Product_ID=1",
+					"raw": "http://localhost:5000/Product/List?Product_ID=2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -25,7 +25,7 @@
 					"query": [
 						{
 							"key": "Product_ID",
-							"value": "1"
+							"value": "2"
 						}
 					]
 				}
@@ -64,7 +64,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/Product/Insert?Product_Type=teste&Description=produto de teste&Size=41&Amount=5&Value=166.56",
+					"raw": "http://localhost:5000/Product/Insert?product_type=Sapato&description=Vans Oldschool preto&size=41&amount=5&value=450.99",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -76,24 +76,73 @@
 					],
 					"query": [
 						{
-							"key": "Product_Type",
-							"value": "teste"
+							"key": "product_type",
+							"value": "Sapato"
 						},
 						{
-							"key": "Description",
-							"value": "produto de teste"
+							"key": "description",
+							"value": "Vans Oldschool preto"
 						},
 						{
-							"key": "Size",
+							"key": "size",
 							"value": "41"
 						},
 						{
-							"key": "Amount",
+							"key": "amount",
 							"value": "5"
 						},
 						{
+							"key": "value",
+							"value": "450.99"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualiza infor do produto",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/Product/Update?Product_ID=2&Product_Type=teste 2&Description=produto de teste 2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"Product",
+						"Update"
+					],
+					"query": [
+						{
+							"key": "Product_ID",
+							"value": "2"
+						},
+						{
+							"key": "Product_Type",
+							"value": "teste 2"
+						},
+						{
+							"key": "Description",
+							"value": "produto de teste 2"
+						},
+						{
+							"key": "Size",
+							"value": "41",
+							"disabled": true
+						},
+						{
+							"key": "Amount",
+							"value": "5",
+							"disabled": true
+						},
+						{
 							"key": "Value",
-							"value": "166.56"
+							"value": "166.56",
+							"disabled": true
 						}
 					]
 				}
