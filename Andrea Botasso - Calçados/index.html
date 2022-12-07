@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Modelo</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+
+  <section class="container">
+    
+    <form action="" method="get" id="Registro_vendas">
+      <h1>Registro de Vendas</h1>
+      <p>
+        <label for="ID_PRODUTO">ID do Produto:</label>
+        <input type="text" id="id_produto">
+
+        <label for="Cliente">Cliente:</label>
+        <input type="text" class="Cliente">
+
+        <label for="Cliente">Tipo de Produto:</label>
+        <select name="tipo_produto" class="tipo_produto">
+          <option value="">Calçados</option>
+          <option value="">Bolsas</option>
+          <option value="">Acessórios</option>
+        </select>
+
+        <label for="descricao">Descrição do Produto:</label>
+        <input type="text" id="descricao">
+
+        <label for="Quantidade">Quantidade:</label>
+        <input type="number" class="Quantidade">
+
+        <label for="forma_pagamento">Forma de Pagamento:</label>
+        <select name="pagamento" class="forma_pagamento">
+          <option value="credito_parcelado">Crédito Parcelado</option>
+          <option value="debito">Débito</option>
+          <option value="">Crédito a vista</option>
+          <option value="">Dinheiro</option>
+          <option value="">PIX</option>      
+
+        </select>
+
+        <label for="valor">Valor do Produto:</label>
+        <input type="text" id="valor">
+
+        <label for="Data_Venda">Data da Venda:</label>
+        <input type="date" id="Data_venda">
+
+        <button type="submit">Registrar Venda</button>
+
+      </p>
+
+    </form>
+    
+    
+  </section>
+
+  <script src="./assets/js/main.js"></script>
+</body>
+
+</html>
