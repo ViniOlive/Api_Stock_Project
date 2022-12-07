@@ -1,4 +1,3 @@
-import json
 import pymongo
 from pymongo import MongoClient
 from flask import Flask, request, jsonify
@@ -21,7 +20,7 @@ def connect():
 
 @app.route('/Product/List', methods=['GET'])
 @cross_origin()
-def consultProduct():
+def consultproduct():
     db_table = connect()['Stock']
     product_id = request.args.get('Product_ID')
 
@@ -41,7 +40,7 @@ def consultProduct():
 
 @app.route('/Product', methods=['DELETE'])
 @cross_origin()
-def delProduct():
+def delproduct():
     db_table = connect()['Stock']
     product_id = request.args.get('Product_ID')
     if product_id:
@@ -54,7 +53,7 @@ def delProduct():
 
 @app.route('/Product/Insert', methods=['POST'])
 @cross_origin()
-def insertProduct():
+def insertproduct():
     db_table = connect()['Stock']
 
     product_id = db_table.find_one(sort=[("product_ID", pymongo.DESCENDING)])["product_ID"] + 1
