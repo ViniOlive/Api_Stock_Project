@@ -35,7 +35,42 @@ def consultProduct():
                     dict_item_aux.update({key: value})
 
         return jsonify(dict_item_aux)
+    else:
+        'ID do produto nao informado.'
+
+
+@app.route('/Product', methods=['DELETE'])
+@cross_origin()
+def delProduct():
+    db_table = connect()['Stock']
+    product_id = request.args.get('Product_ID')
+    if product_id:
+        db_table.delete_one({'product_ID': int(product_id)})
+
+        return f'Produto ID: {product_id} excluido com sucesso.'
+    else:
+        'Para excluir um produto informe o ID.'
+
+
+@app.route('/Product/Insert', methods=['POST'])
+@cross_origin()
+def insertProduct():
+    db_table = connect()['Stock']
+
+    product_id = db_table.find_one(sort=[("product_ID", pymongo.DESCENDING)])["product_ID"] + 1
+    dict_in = {"product_ID": product_id, "updated_date": datetime.now().strftime("%d/%m/%y - %H:%M")}
+
+    for key, value in request.args.items():
+        if value:
+            if value.replace('.', '').isnumeric():
+                dict_in.update({key: float(value)})
+            else:
+                dict_in.update({key: value})
+        else:
+            return f"O campo {key} deve ser preenchido."
+
+    db_table.insert_one(dict_in)
+    return f"Produto ID: {product_id} inserido com sucesso"
+
 
 app.run(port=5000, host='localhost', debug=True)
-
-
