@@ -26,7 +26,7 @@ def consultproduct():
 
     dict_item_aux = {}
     if product_id:
-        product = [item for item in db_table.find({"Product_ID": int(product_id)})]
+        product = [item for item in db_table.find({"product_ID": int(product_id)})]
 
         for item in product:
             for key, value in item.items():
