@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Estoque de produtos</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+
+  <section class="container">
+    
+    <form action="" method="get" id="Registro_de_estoque">
+      <h1>Estoque de Produtos</h1>
+      <p>
+        <label for="ID_PRODUTO_ESTOQUE">ID do Produto:</label>
+        <input type="text" id="id_produto_estoque">
+
+        <label for="descricao">Descricão do Produto:</label>
+        <input type="text" id="descricao_produto_estoque">
+
+        <label for="tamanho">Tamanho</label>
+        <input type="text" id="tamanho_produto_estoque"> 
+        
+        <label for="valor">Tipo de Produto:</label>
+        <select name="tipo_produto" id="tipo_produto_estoque">
+          <option value="">Calçados</option>
+          <option value="">Bolsas</option>
+          <option value="">Acessórios</option>
+        </select>
+
+        <label for="Quantidade">Quantidade:</label>
+        <input type="text" id="Quantidade_estoque">
+
+        <label for="forma_pagamento">Valor do Produto:</label>
+        <input type="text" id="valor_produto_estoque">
+
+        <label for="valor">Data Criação:</label>
+        <input type="date" id="data_criacao_produto_estoque">
+
+        <button type="submit">Cadastrar do Produto</button>
+
+      </p>
+
+    </form>
+    
+    
+  </section>
+
+  <script src="./assets/js/estoque.js"></script>
+</body>
+
+</html>
