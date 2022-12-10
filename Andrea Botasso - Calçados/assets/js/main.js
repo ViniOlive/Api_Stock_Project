@@ -10,7 +10,7 @@ async function requestApi(productID){
     const resultado = await fetch(apiID);
     const json = await resultado.json();
     
-    return resultado
+    return json;
 };
 
 idProduto.addEventListener("blur", (e) => {
@@ -43,13 +43,11 @@ quantidade.addEventListener("blur", e => {
 //Realiza a captação de dados da API
 const capturaValorProduto = async(product) => {
     try{
-        const data =  await (await requestApi(product)).headers.values();
-
-        console.log(data)
+        const data = await requestApi(product);
         
-//        document.getElementById('descricao').value = data['description']
-//        document.getElementById('valor').value = `R$: ${data['value']}`
-//        document.getElementById('Data_venda').value = String(date)
+        document.getElementById('descricao').value = data['description']
+        document.getElementById('valor').value = `R$: ${data['value']}`
+        document.getElementById('Data_venda').value = String(date)
     }catch(err){
         window.alert("Produto não cadastrado!")
     };
