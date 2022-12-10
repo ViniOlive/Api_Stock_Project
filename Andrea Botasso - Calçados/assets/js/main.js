@@ -37,7 +37,7 @@ quantidade.addEventListener("blur", e => {
             alert('Informe uma quantidade valida!')
         }
         else{
-            document.getElementById('valor').value = `R$: ${quant * quantidade.value}`
+            calculaValorTotalItem(variavel_teste.value, quantidade.value)
         }
 });
 //Realiza a captação de dados da API
@@ -52,4 +52,10 @@ const capturaValorProduto = async(product) => {
         window.alert("Produto não cadastrado!")
     };
 };
+
+async function calculaValorTotalItem(productID, quantidade){
+    const data = await requestApi(productID);
+
+    document.getElementById('valor').value = `R$: ${data['value'] * quantidade}`
+}
 
