@@ -5,17 +5,17 @@ const quantidade = document.querySelector('#Quantidade');
 date = new Date().toISOString().slice(0, 10)
 const variavel_teste = document.getElementById('id_produto')
 
-const requestApi = async(productID) => {
+function requestApi(productID){
     const apiID = "http://localhost:5000/Product/List?Product_ID=".concat(productID);
-    const resultado = await fetch(apiID);
-    const data = resultado.json();
-    return data
+    const resultado = fetch(apiID).then(Response => Response.json())
+    console.log(resultado)
+    // console.log(resultado['description'])
 };
 
-idProduto.addEventListener("blur", e => {
+idProduto.addEventListener("blur", (e) => {
     e.preventDefault();
     const idDoProduto = variavel_teste.value;
-    if (idProduto){
+    if (idDoProduto >= 0){
         try {
             capturaValorProduto(idDoProduto);
         } catch(err){
@@ -43,8 +43,7 @@ quantidade.addEventListener("blur", e => {
 const capturaValorProduto = product => {
     try{
         const data = requestApi(product)
-
-        console.log(data.)
+        
 //        document.getElementById('descricao').value = data['description']
 //        document.getElementById('valor').value = `R$: ${data['value']}`
 //        document.getElementById('Data_venda').value = String(date)
