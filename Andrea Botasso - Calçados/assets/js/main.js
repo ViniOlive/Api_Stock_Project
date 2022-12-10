@@ -5,11 +5,12 @@ const quantidade = document.querySelector('#Quantidade');
 date = new Date().toISOString().slice(0, 10)
 const variavel_teste = document.getElementById('id_produto')
 
-function requestApi(productID){
+async function requestApi(productID){
     const apiID = "http://localhost:5000/Product/List?Product_ID=".concat(productID);
-    const resultado = fetch(apiID).then(Response => Response.json())
-    console.log(resultado)
-    // console.log(resultado['description'])
+    const resultado = await fetch(apiID);
+    const json = await resultado.json();
+    
+    return resultado
 };
 
 idProduto.addEventListener("blur", (e) => {
@@ -40,9 +41,11 @@ quantidade.addEventListener("blur", e => {
         }
 });
 //Realiza a captação de dados da API
-const capturaValorProduto = product => {
+const capturaValorProduto = async(product) => {
     try{
-        const data = requestApi(product)
+        const data =  await (await requestApi(product)).headers.values();
+
+        console.log(data)
         
 //        document.getElementById('descricao').value = data['description']
 //        document.getElementById('valor').value = `R$: ${data['value']}`
